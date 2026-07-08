@@ -538,6 +538,195 @@
     }
     .task-kaggle a { color: var(--navy); font-weight: 500; }
 
+    /* ── FINAL RESULTS / LEADERBOARD ──────────────────── */
+    .results {
+      position: relative;
+      background: var(--midnight);
+      overflow: hidden;
+      padding: 78px 24px 84px;
+      text-align: center;
+    }
+    .results::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% -10%, rgba(200,150,12,.20) 0%, transparent 60%),
+        radial-gradient(ellipse 90% 50% at 15% 110%,  rgba(79,195,220,.20) 0%, transparent 62%),
+        radial-gradient(ellipse 80% 45% at 88% 100%,  rgba(123,108,246,.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .results-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+
+    .results-kicker {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      border: 1px solid rgba(240,192,64,.35);
+      background: rgba(240,192,64,.07);
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 26px;
+    }
+    .results-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .results-title span {
+      background: linear-gradient(90deg, var(--gold-lt), var(--aurora1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .results-sub {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 44px;
+    }
+
+    /* Champion card */
+    .champion-card {
+      position: relative;
+      border: 1px solid rgba(240,192,64,.45);
+      border-radius: 6px;
+      background: linear-gradient(160deg, rgba(240,192,64,.14), rgba(200,150,12,.05));
+      box-shadow: 0 0 40px rgba(200,150,12,.22), 0 8px 40px rgba(0,0,0,.35);
+      padding: 34px 28px 30px;
+      margin-bottom: 22px;
+    }
+    .champion-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 14px;
+    }
+    .champion-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 4.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: .02em;
+      background: linear-gradient(90deg, var(--gold-lt), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .champion-place {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* Ranked list (2nd–4th) */
+    .lb-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .lb-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 5px;
+      background: rgba(255,255,255,.03);
+      text-align: left;
+      transition: border-color .15s, background .15s;
+    }
+    .lb-row:hover { border-color: rgba(79,195,220,.4); background: rgba(79,195,220,.05); }
+    .lb-place {
+      flex-shrink: 0;
+      width: 42px;
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--aurora1);
+      text-align: center;
+    }
+    .lb-medal { flex-shrink: 0; font-size: 22px; width: 26px; text-align: center; }
+    .lb-team {
+      flex-grow: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: rgba(255,255,255,.92);
+    }
+
+    /* Presentation-link slot — appears only when a team adds a link */
+    .lb-pres {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: .06em;
+      color: var(--aurora1);
+      text-decoration: none;
+      border: 1px solid rgba(79,195,220,.35);
+      border-radius: 3px;
+      padding: 6px 12px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .lb-pres:hover { background: rgba(79,195,220,.12); color: var(--gold-lt); }
+    .champion-card .lb-pres { margin-top: 18px; }
+
+    @media (max-width: 520px) {
+      .lb-row { gap: 12px; padding: 14px 16px; }
+      .lb-team { font-size: 15px; }
+      .lb-place { width: 32px; font-size: 16px; }
+      .lb-pres { padding: 5px 9px; font-size: 10.5px; }
+    }
+
+    /* ── CLOSED / ARCHIVED STATES ─────────────────────── */
+    .platform-card.closed { cursor: default; border-top-color: var(--border); background: #fafbfd; }
+    .platform-card.closed:hover { transform: none; box-shadow: none; }
+    .platform-card.closed .pf-icon { color: var(--muted); opacity: .55; }
+    .platform-card.closed .pf-name { color: var(--muted); }
+    .platform-card.closed .pf-go {
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .platform-card.closed .pf-go::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--muted);
+      opacity: .5;
+    }
+    .btn-closed {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #eceff4;
+      border: 1px solid var(--border);
+      padding: 14px 36px;
+      border-radius: 2px;
+      cursor: default;
+    }
+    .task-kaggle.closed { color: var(--muted); }
+
   </style>
 </head>
 <body>
@@ -563,13 +752,59 @@
       held in conjunction with <strong style="color:rgba(255,255,255,.85)">ESIT 2026</strong>, Nordfjordeid, Norway.
     </p>
 
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScaAUGoArpk_haF4PrIWFBD5ODZWGBrpAsjVjWHpXV2i--gPA/viewform?usp=header" class="btn-primary">Register Now</a>
+    <a href="#results" class="btn-primary">See the Final Results</a>
 
     <p class="hero-meta">
-      <strong>Enrollment deadline:</strong> June 3, 2026 &nbsp;·&nbsp;
+      <strong>Competition concluded</strong> &nbsp;·&nbsp;
       <strong>Prize pool:</strong> 1,000 EUR &nbsp;·&nbsp;
       <strong>Winners announced:</strong> July 8, 2026
     </p>
+  </div>
+</div>
+<div class="aurora-bar"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     FINAL RESULTS / LEADERBOARD
+     ───────────────────────────────────────────────────────
+     To add a team's presentation link, drop this line into that
+     team's slot (marked below) and fill in the URL:
+       <a class="lb-pres" href="PRESENTATION_URL" target="_blank" rel="noopener">Presentation ↗</a>
+════════════════════════════════════════════════════════ -->
+<div class="results" id="results">
+  <div class="results-inner">
+    <div class="results-kicker">★ Final Results · July 8, 2026</div>
+    <h2 class="results-title">They Charted the Path to <span>Bifröst</span></h2>
+    <p class="results-sub">Four teams crossed the bridge. Here is the final leaderboard.</p>
+
+    <!-- Champions -->
+    <div class="champion-card">
+      <div class="champion-badge">🏆 Champions</div>
+      <div class="champion-name">KUDFI</div>
+      <div class="champion-place">1st Place</div>
+      <!-- KUDFI presentation slot -->
+    </div>
+
+    <!-- Runners-up -->
+    <ol class="lb-list">
+      <li class="lb-row">
+        <span class="lb-medal">🥈</span>
+        <span class="lb-place">2nd</span>
+        <span class="lb-team">Yggdrasil Embeddings</span>
+        <!-- Yggdrasil Embeddings presentation slot -->
+      </li>
+      <li class="lb-row">
+        <span class="lb-medal">🥉</span>
+        <span class="lb-place">3rd</span>
+        <span class="lb-team">Asgard Autoencoders</span>
+        <!-- Asgard Autoencoders presentation slot -->
+      </li>
+      <li class="lb-row">
+        <span class="lb-medal">·</span>
+        <span class="lb-place">4th</span>
+        <span class="lb-team">Solo Skald</span>
+        <!-- Solo Skald presentation slot -->
+      </li>
+    </ol>
   </div>
 </div>
 <div class="aurora-bar"></div>
@@ -609,32 +844,33 @@
   <div class="container">
     <h2><span class="num">02 · PLATFORMS</span>Where the Competition Lives</h2>
     <p>
-      Everything you need is one click away. Join the community on <strong>Slack</strong> for announcements and
-      team-building, then head to the two <strong>Kaggle</strong> competitions, where the data, baseline code,
-      submission interface, and live leaderboards are hosted.
+      Throughout the competition, everything lived one click away: the <strong>Slack</strong> community for
+      announcements and team-building, and the two <strong>Kaggle</strong> competitions hosting the data, baseline
+      code, and live leaderboards. These platforms are now closed — they remain listed below as a record of the
+      competition.
     </p>
     <div class="platforms">
-      <a class="platform-card slack" href="https://join.slack.com/t/bitsbotsaixin-cvm5928/shared_invite/zt-29r9rb49j-RfDss4fI4dn4r4RoOgmHYg" target="_blank" rel="noopener">
+      <div class="platform-card slack closed">
         <svg class="pf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         <div class="pf-kicker">Community</div>
         <div class="pf-name">Slack Workspace</div>
-        <div class="pf-desc">The single hub for announcements, technical Q&amp;A, team formation, and all competition discussion. Once you've joined the workspace, open the <strong>#d2i-esit2026</strong> channel.</div>
-        <div class="pf-go">Join the workspace &nbsp;↗</div>
-      </a>
-      <a class="platform-card" href="https://www.kaggle.com/competitions/esit-d2i-competition-2026-charting-the-path-to-bifrost-task-1" target="_blank" rel="noopener">
+        <div class="pf-desc">The single hub for announcements, technical Q&amp;A, team formation, and all competition discussion, centred on the <strong>#d2i-esit2026</strong> channel.</div>
+        <div class="pf-go">Workspace closed</div>
+      </div>
+      <div class="platform-card closed">
         <svg class="pf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg>
         <div class="pf-kicker">Task 1 · Main Challenge</div>
         <div class="pf-name">Learning under Noisy Conditions</div>
         <div class="pf-desc">Data, baseline code, submission interface, and live leaderboard for the robust-localization task.</div>
-        <div class="pf-go">Open on Kaggle &nbsp;↗</div>
-      </a>
-      <a class="platform-card" href="https://www.kaggle.com/competitions/esit-d2i-competition-2026-charting-the-path-to-bifrost-task-2" target="_blank" rel="noopener">
+        <div class="pf-go">Competition closed</div>
+      </div>
+      <div class="platform-card closed">
         <svg class="pf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg>
         <div class="pf-kicker">Task 2 · Advanced Challenge</div>
         <div class="pf-name">Unlearning &amp; Data Reliability</div>
         <div class="pf-desc">Data, baseline code, submission interface, and live leaderboard for the unlearning task.</div>
-        <div class="pf-go">Open on Kaggle &nbsp;↗</div>
-      </a>
+        <div class="pf-go">Competition closed</div>
+      </div>
     </div>
   </div>
 </section>
@@ -699,7 +935,7 @@
           <p style="font-family:'Cinzel',serif;font-size:16px;color:var(--navy)">16:00 &ndash; 17:00 CEST (GMT+2)</p>
         </div>
       </div>
-      <a class="btn-primary" href="https://meet.google.com/vpv-bsye-wyv" target="_blank" rel="noopener">Join via Google Meet</a>
+      <span class="btn-closed">Live session concluded</span>
       <p class="sponsor-note" style="margin-top:24px">
         The live event is generously sponsored by
         <a href="https://ellismadrid.es/" target="_blank" rel="noopener">ELLIS Society, Madrid Unit</a>.
@@ -743,18 +979,17 @@
   <div class="container">
     <h2><span class="num">05 · REGISTRATION</span>How to Join</h2>
     <p>
-      Participants must register through the online form by <strong>June 3, 2026</strong>.
-      During registration, you will be asked to indicate whether you are registering as an individual or as part of
-      a team, and whether you plan to attend ESIT in person.
+      Registration is now closed. During the competition, participants registered through an online form,
+      indicating whether they were joining as an individual or as part of a team, and whether they planned to
+      attend ESIT in person.
     </p>
     <p>
-      Team formation will be finalized on June 4, after the in-person ESIT session — providing an opportunity for
-      participants to meet and form teams on-site. <strong>Each team must include at least one member attending ESIT
-      in person.</strong> Participants who cannot attend ESIT should still register by May 26; organizers will assist
-      in forming teams for remote participants.
+      Team formation was finalized on June 4, after the in-person ESIT session — giving participants an
+      opportunity to meet and form teams on-site. <strong>Each team was required to include at least one member
+      attending ESIT in person.</strong> Remote participants were assisted by the organizers in forming teams.
     </p>
     <p style="margin-top:24px; text-align:center;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScaAUGoArpk_haF4PrIWFBD5ODZWGBrpAsjVjWHpXV2i--gPA/viewform?usp=header" class="btn-primary">Register via Google Form</a>
+      <span class="btn-closed">Registration closed</span>
     </p>
   </div>
 </section>
@@ -866,7 +1101,7 @@
         <li><strong>Feature Noise (CSI Corruption):</strong> CSI measurements altered through phase offsets or random transformations.</li>
       </ul>
       <p style="margin-top:10px">The goal is to balance accuracy and reliability, avoiding catastrophic localization errors while maintaining good average performance.</p>
-      <p class="task-kaggle">→ Compete on Kaggle: <a href="https://www.kaggle.com/competitions/esit-d2i-competition-2026-charting-the-path-to-bifrost-task-1" target="_blank" rel="noopener">ESIT-D2I · Task 1 ↗</a></p>
+      <p class="task-kaggle closed">Hosted on Kaggle · ESIT-D2I Task 1 — closed</p>
     </div>
 
     <div class="task-block">
@@ -880,7 +1115,7 @@
         <li>Identify unreliable data sources once partial information is revealed</li>
         <li>Develop efficient methods to remove ("unlearn") corrupted contributions without full retraining</li>
       </ul>
-      <p class="task-kaggle">→ Compete on Kaggle: <a href="https://www.kaggle.com/competitions/esit-d2i-competition-2026-charting-the-path-to-bifrost-task-2" target="_blank" rel="noopener">ESIT-D2I · Task 2 ↗</a></p>
+      <p class="task-kaggle closed">Hosted on Kaggle · ESIT-D2I Task 2 — closed</p>
     </div>
   </div>
 </section>
